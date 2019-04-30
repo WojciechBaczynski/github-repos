@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DisplayRepositories from "../components/DisplayRepositories";
+import Spinner from "../components/Spinner";
 
 class Repositories extends Component {
   state = {
-    searchedRepo: "react",
+    searchedRepo: "jest",
     repositories: [],
     timeout: null,
     fetching: true
@@ -39,19 +40,21 @@ class Repositories extends Component {
   render() {
     return (
       <React.Fragment>
-        <div style={{ marginBottom: "20px", background: "#ddd" }}>
-          Search github repositories:{" "}
+        <div className="flex h-80 justify-center items-center bg-hero-overcast-red mb-8">
           <input
-            placeholder="keyword"
+            className="h-10 text-lg text-center shadow appearance-none border-1 border border-red rounded w-1/2 py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Type searched repository"
             type="text"
             onChange={this.handleUserNameChange}
           />
         </div>
-        {this.state.fetching ? (
-          <div>Fetching...</div>
-        ) : (
-          <DisplayRepositories repositories={this.state.repositories} />
-        )}
+        <div className="flex flex-wrap justify-center items-center">
+          {this.state.fetching ? (
+            <Spinner />
+          ) : (
+            <DisplayRepositories repositories={this.state.repositories} />
+          )}
+        </div>
       </React.Fragment>
     );
   }
