@@ -1,11 +1,11 @@
 import React from "react";
-import DisplayRepositories from "./containers/DisplayRepositories";
+import Repositories from "./containers/Repositories";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <DisplayRepositories />
+      <Repositories />
     </div>
   );
 }
