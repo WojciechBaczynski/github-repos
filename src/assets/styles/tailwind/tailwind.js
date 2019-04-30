@@ -52,7 +52,7 @@ const colors = {
   grey: "#b8c2cc",
   "grey-light": "#f3f6f8",
   "grey-lighter": "#edf1f3",
-  "grey-lightest": "#fafafa",
+  "grey-lightest": "#f5f5f5",
 
   "red-darkest": "#3b0d0c",
   "red-darker": "#621b18",
@@ -397,6 +397,8 @@ config.backgroundSize = {
 config.borderWidths = {
   0: "0px",
   default: "1px",
+  2: "2px",
+  3: "3px",
   4: "4px",
   6: "6px",
   8: "8px"
@@ -618,6 +620,7 @@ config.minHeight = {
   2: "0.5rem",
   3: "0.75rem",
   4: "1rem",
+  24: "6rem",
   32: "8rem",
   48: "12rem",
   "2/3": "66.66667%",
@@ -647,6 +650,7 @@ config.maxWidth = {
   md: "40rem",
   lg: "50rem",
   xl: "60rem",
+  24: "6rem",
   32: "8rem",
   "2xl": "70rem",
   "3xl": "80rem",
@@ -670,6 +674,7 @@ config.maxWidth = {
 */
 
 config.maxHeight = {
+  24: "6rem",
   32: "8rem",
   full: "100%",
   screen: "100vh"
@@ -963,85 +968,11 @@ config.modules = {
 */
 
 config.plugins = [
-  require("tailwindcss/plugins/container")({
-    // center: true,
-    // padding: '1rem',
-  }),
-  require("tailwindcss-border-gradients")({
-    variants: ["responsive"],
-    directions: {
-      t: "to top",
-      r: "to right",
-      b: "to bottom",
-      l: "to left"
-    },
-    gradients: {
-      "grey-dark": [colors["grey-darker"], colors["grey-darkest"]],
-      grey: [colors["grey-light"], colors["grey"]],
-      "red-dark": [colors["red-darker"], colors["red-darkest"]],
-      red: [colors["red-light"], colors["red-dark"]],
-      "orange-dark": [colors["orange-darker"], colors["orange-darkest"]],
-      orange: [colors["orange-light"], colors["orange-dark"]],
-      "yellow-dark": [colors["yellow-darker"], colors["yellow-darkest"]],
-      yellow: [colors["yellow-light"], colors["yellow-dark"]],
-      "green-dark": [colors["green-darker"], colors["green-darkest"]],
-      green: [colors["green-light"], colors["green-dark"]],
-      "teal-dark": [colors["teal-darker"], colors["teal-darkest"]],
-      teal: [colors["teal-light"], colors["teal-dark"]],
-      "blue-dark": [colors["blue-darker"], colors["blue-darkest"]],
-      blue: [colors["blue-light"], colors["blue-dark"]],
-      "indigo-dark": [colors["indigo-darker"], colors["indigo-darkest"]],
-      indigo: [colors["indigo-light"], colors["indigo-dark"]],
-      "purple-dark": [colors["purple-darker"], colors["purple-darkest"]],
-      purple: [colors["purple-light"], colors["purple-dark"]],
-      "pink-dark": [colors["pink-darker"], colors["pink-darkest"]],
-      pink: [colors["pink-light"], colors["pink-dark"]]
-    }
-  }),
-  require("tailwindcss-gradients")({
-    variants: ["responsive"],
-    directions: {
-      t: "to top",
-      r: "to right",
-      b: "to bottom",
-      l: "to left"
-    },
-    gradients: {
-      "grey-dark": [colors["grey-darker"], colors["grey-darkest"]],
-      grey: [colors["grey-light"], colors["grey"]],
-      "red-dark": [colors["red-darker"], colors["red-darkest"]],
-      red: [colors["red-light"], colors["red-dark"]],
-      "orange-dark": [colors["orange-darker"], colors["orange-darkest"]],
-      orange: [colors["orange-light"], colors["orange-dark"]],
-      "yellow-dark": [colors["yellow-darker"], colors["yellow-darkest"]],
-      yellow: [colors["yellow-light"], colors["yellow-dark"]],
-      "green-dark": [colors["green-darker"], colors["green-darkest"]],
-      green: [colors["green-light"], colors["green-dark"]],
-      "teal-dark": [colors["teal-darker"], colors["teal-darkest"]],
-      teal: [colors["teal-light"], colors["teal-dark"]],
-      "blue-dark": [colors["blue-darker"], colors["blue-darkest"]],
-      blue: [colors["blue-light"], colors["blue-dark"]],
-      "indigo-dark": [colors["indigo-darker"], colors["indigo-darkest"]],
-      indigo: [colors["indigo-light"], colors["indigo-dark"]],
-      "purple-dark": [colors["purple-darker"], colors["purple-darkest"]],
-      purple: [colors["purple-light"], colors["purple-dark"]],
-      "pink-dark": [colors["pink-darker"], colors["pink-darkest"]],
-      pink: [colors["pink-light"], colors["pink-dark"]]
-    }
-  }),
   require("tailwind-heropatterns")({
     variants: [],
-    patterns: [
-      "overcast",
-      "happy-intersection",
-      "random-shapes",
-      "cutout",
-      "death-star",
-      "steel-beams",
-      "morphing-diamonds",
-      "leaf"
-    ],
+    patterns: ["jupiter", "formal-invitation", "morphing-diamonds"],
     colors: {
+      black: colors.black,
       grey: colors.grey,
       red: colors.red,
       orange: colors.orange,

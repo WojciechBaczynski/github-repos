@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import DisplayRepositories from "../components/DisplayRepositories";
 import Spinner from "../components/Spinner";
+import { ThemeContext } from "../context";
 
 class Repositories extends Component {
   state = {
@@ -40,10 +41,14 @@ class Repositories extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="flex h-80 justify-center items-center bg-hero-morphing-diamonds-indigo mb-8">
+        <div
+          className={`flex h-80 justify-center items-center bg-hero-${
+            this.context
+          }-black mb-8`}
+        >
           <input
-            className="h-10 text-lg text-center shadow appearance-none border-1 border border-red rounded w-1/2 py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Type searched repository"
+            className="h-10 text-lg text-center shadow appearance-none border-1 border border-grey rounded w-1/2 py-2 px-3 font-body text-grey-darker leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Search repository"
             type="text"
             onChange={this.handleUserNameChange}
           />
@@ -59,5 +64,7 @@ class Repositories extends Component {
     );
   }
 }
+
+Repositories.contextType = ThemeContext;
 
 export default Repositories;
