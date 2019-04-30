@@ -40,7 +40,7 @@ class Repositories extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="flex h-80 justify-center items-center bg-hero-overcast-red mb-8">
+        <div className="flex h-80 justify-center items-center bg-hero-morphing-diamonds-indigo mb-8">
           <input
             className="h-10 text-lg text-center shadow appearance-none border-1 border border-red rounded w-1/2 py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Type searched repository"
