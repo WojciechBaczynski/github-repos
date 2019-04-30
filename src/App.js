@@ -3,8 +3,6 @@ import Repositories from "./containers/Repositories";
 import "../src/assets/styles/tailwind/tailwind-compiled.css";
 import "../src/assets/styles/fonts/Jost/Jost.css";
 import "../src/assets/styles/fonts/LeagueSpartan/index.css";
-import "./App.css";
-
 import { ThemeContext, themes } from "./context";
 
 class App extends React.Component {
@@ -17,8 +15,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className={`bg-hero-${this.state.theme}-indigo`}>
+      <React.Fragment>
+        <div
+          className={`bg-hero-${this.state.theme}-indigo flex justify-center`}
+        >
           <select
             onChange={event => this.setState({ theme: event.target.value })}
           >
@@ -32,7 +32,7 @@ class App extends React.Component {
         <ThemeContext.Provider value={this.state.theme}>
           <Repositories />
         </ThemeContext.Provider>
-      </div>
+      </React.Fragment>
     );
   }
 }

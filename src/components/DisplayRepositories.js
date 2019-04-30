@@ -14,7 +14,7 @@ const displayRepositories = ({ repositories }) => {
         />
         <div className="justify-center flex items-center flex-col min-h-2/3 overflow-hidden font-normal bg-white shadow-md pt-8 -mt-8 w-9/10 px-4 h-2/3 mb-8">
           <p>Owner: {repository.owner.login}</p>
-          <p>Name: {repository.name}</p>
+          <p>Repository: {repository.name}</p>
           <p>Description: {repository.description}</p>
           <p>Stars: {repository.stargazers_count}</p>
         </div>
