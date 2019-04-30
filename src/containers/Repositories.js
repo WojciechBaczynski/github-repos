@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import DisplayOwner from "../components/DisplayOwner";
 import DisplayRepositories from "../components/DisplayRepositories";
 
 class Repositories extends Component {
   state = {
-    userName: "WojciechBaczynski",
+    searchedRepo: "react",
     repositories: [],
     timeout: null,
     fetching: true
@@ -13,9 +12,13 @@ class Repositories extends Component {
 
   fetchingRepositories = () => {
     axios
-      .get(`https://api.github.com/users/${this.state.userName}/repos`)
+      .get(
+        `https://api.github.com/search/repositories?q=${
+          this.state.searchedRepo
+        }`
+      )
       .then(({ data }) =>
-        this.setState({ repositories: data, fetching: false })
+        this.setState({ repositories: data.items, fetching: false })
       )
       .catch(error => console.log(error));
   };
@@ -23,7 +26,8 @@ class Repositories extends Component {
   handleUserNameChange = event => {
     clearTimeout(this.state.timeout);
     this.setState({
-      userName: event.target.value,
+      searchedRepo: event.target.value,
+      fetching: true,
       timeout: setTimeout(this.fetchingRepositories, 1000)
     });
   };
@@ -36,9 +40,9 @@ class Repositories extends Component {
     return (
       <React.Fragment>
         <div style={{ marginBottom: "20px", background: "#ddd" }}>
-          Input:{" "}
+          Search github repositories:{" "}
           <input
-            placeholder="type username"
+            placeholder="keyword"
             type="text"
             onChange={this.handleUserNameChange}
           />
@@ -46,10 +50,7 @@ class Repositories extends Component {
         {this.state.fetching ? (
           <div>Fetching...</div>
         ) : (
-          <React.Fragment>
-            <DisplayOwner repositories={this.state.repositories} />
-            <DisplayRepositories repositories={this.state.repositories} />{" "}
-          </React.Fragment>
+          <DisplayRepositories repositories={this.state.repositories} />
         )}
       </React.Fragment>
     );
