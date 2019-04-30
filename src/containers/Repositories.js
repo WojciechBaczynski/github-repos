@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import DisplayOwner from "../components/DisplayOwner";
 import DisplayRepositories from "../components/DisplayRepositories";
-import WithNoUser from "../components/WithNoUser";
 
 class Repositories extends Component {
   state = {
@@ -41,14 +40,8 @@ class Repositories extends Component {
             onChange={this.handleUserNameChange}
           />
         </div>
-        {this.state.repositories.length !== 0 ? (
-          <React.Fragment>
-            <DisplayOwner ownerData={this.state.repositories[0].owner} />
-            <DisplayRepositories repositoriesData={this.state.repositories} />
-          </React.Fragment>
-        ) : (
-          <WithNoUser />
-        )}
+        <DisplayOwner repositories={this.state.repositories} />
+        <DisplayRepositories repositories={this.state.repositories} />
       </React.Fragment>
     );
   }

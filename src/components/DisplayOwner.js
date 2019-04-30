@@ -1,11 +1,13 @@
 import React from "react";
 
-const displayOwner = ({ ownerData }) => {
-  return (
+const displayOwner = ({ repositories }) => {
+  return repositories.length !== 0 ? (
     <div style={{ marginBottom: "20px", background: "#eee" }}>
-      <img src={ownerData.avatar_url} alt="morda" />
-      <p>Name: {ownerData.login}</p>
+      <img src={repositories[0].owner.avatar_url} alt="morda" />
+      <p>Name: {repositories[0].owner.login}</p>
     </div>
+  ) : (
+    <div>No user</div>
   );
 };
 
