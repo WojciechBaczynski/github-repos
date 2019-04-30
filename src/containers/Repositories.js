@@ -7,13 +7,16 @@ class Repositories extends Component {
   state = {
     userName: "WojciechBaczynski",
     repositories: [],
-    timeout: null
+    timeout: null,
+    fetching: true
   };
 
   fetchingRepositories = () => {
     axios
       .get(`https://api.github.com/users/${this.state.userName}/repos`)
-      .then(({ data }) => this.setState({ repositories: data }))
+      .then(({ data }) =>
+        this.setState({ repositories: data, fetching: false })
+      )
       .catch(error => console.log(error));
   };
 
@@ -40,8 +43,14 @@ class Repositories extends Component {
             onChange={this.handleUserNameChange}
           />
         </div>
-        <DisplayOwner repositories={this.state.repositories} />
-        <DisplayRepositories repositories={this.state.repositories} />
+        {this.state.fetching ? (
+          <div>Fetching...</div>
+        ) : (
+          <React.Fragment>
+            <DisplayOwner repositories={this.state.repositories} />
+            <DisplayRepositories repositories={this.state.repositories} />{" "}
+          </React.Fragment>
+        )}
       </React.Fragment>
     );
   }
