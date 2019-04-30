@@ -1,9 +1,10 @@
 import React from "react";
 
 export const themes = {
-  jupiter: "jupiter",
-  morphingDiamonds: "morphing-diamonds",
-  formalInvitation: "formal-invitation"
+  stripes: "stripes",
+  deathStar: "death-star",
+  fancyRectangles: "fancy-rectangles",
+  houndstooth: "houndstooth"
 };
 
 export const ThemeContext = React.createContext({});

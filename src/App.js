@@ -11,20 +11,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      theme: themes.jupiter
+      theme: themes.stripes
     };
   }
 
   render() {
     return (
       <div className="App">
-        <div className={`bg-hero-${this.state.theme}-black`}>
+        <div className={`bg-hero-${this.state.theme}-indigo`}>
           <select
             onChange={event => this.setState({ theme: event.target.value })}
           >
-            <option value={themes.jupiter}>Theme 1</option>
-            <option value={themes.morphingDiamonds}>Theme 2</option>
-            <option value={themes.formalInvitation}>Theme 3</option>
+            <option value={themes.stripes}>Theme 1</option>
+            <option value={themes.deathStar}>Theme 2</option>
+            <option value={themes.fancyRectangles}>Theme 3</option>
+            <option value={themes.houndstooth}>Theme 4</option>
           </select>
         </div>
 

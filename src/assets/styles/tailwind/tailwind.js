@@ -970,7 +970,7 @@ config.modules = {
 config.plugins = [
   require("tailwind-heropatterns")({
     variants: [],
-    patterns: ["jupiter", "formal-invitation", "morphing-diamonds"],
+    patterns: ["stripes", "death-star", "fancy-rectangles", "houndstooth"],
     colors: {
       black: colors.black,
       grey: colors.grey,
