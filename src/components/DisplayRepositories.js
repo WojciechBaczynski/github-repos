@@ -13,10 +13,20 @@ const displayRepositories = ({ repositories }) => {
           alt="morda"
         />
         <div className="text-center justify-around flex flex-col  min-h-2/3 overflow-hidden font-normal bg-white shadow-md sm:pt-8 sm:w-full w-9/10 px-4 h-2/3">
-          <div>Owner: {repository.owner.login}</div>
-          <div>Repository: {repository.name}</div>
-          <div>Description: {repository.description}</div>
-          <div>Stars: {repository.stargazers_count}</div>
+          <div>
+            Owner: <span className="font-medium">{repository.owner.login}</span>
+          </div>
+          <div>
+            Repository: <span className="font-medium">{repository.name}</span>
+          </div>
+          <div>
+            Description:{" "}
+            <span className="font-medium">{repository.description}</span>
+          </div>
+          <div>
+            Stars:{" "}
+            <span className="font-medium">{repository.stargazers_count}</span>
+          </div>
         </div>
       </div>
     ))
