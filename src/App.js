@@ -20,6 +20,7 @@ class App extends React.Component {
           className={`bg-hero-${this.state.theme}-indigo flex justify-center`}
         >
           <select
+            className="appearance-none mt-1 border-1 border border-indigo rounded p-1 font-body text-grey-darker"
             onChange={event => this.setState({ theme: event.target.value })}
           >
             <option value={themes.stripes}>Theme 1</option>
