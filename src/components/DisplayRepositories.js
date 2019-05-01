@@ -12,11 +12,11 @@ const displayRepositories = ({ repositories }) => {
           src={repository.owner.avatar_url}
           alt="morda"
         />
-        <div className="text-center justify-center flex items-center flex-col min-h-2/3 overflow-hidden font-normal bg-white shadow-md pt-8 -mt-8 w-9/10 px-4 h-2/3 mb-8">
-          <p>Owner: {repository.owner.login}</p>
-          <p>Repository: {repository.name}</p>
-          <p>Description: {repository.description}</p>
-          <p>Stars: {repository.stargazers_count}</p>
+        <div className="text-center justify-around flex flex-col  min-h-2/3 overflow-hidden font-normal bg-white shadow-md sm:pt-8 sm:w-full w-9/10 px-4 h-2/3">
+          <div>Owner: {repository.owner.login}</div>
+          <div>Repository: {repository.name}</div>
+          <div>Description: {repository.description}</div>
+          <div>Stars: {repository.stargazers_count}</div>
         </div>
       </div>
     ))
