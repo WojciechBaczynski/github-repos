@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .lds-roller {
   display: inline-block;
   position: relative;
@@ -125,6 +129,24 @@
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
+}
+
+input::-webkit-input-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder,
+input:-moz-placeholder,
+input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  opacity: .5;
+}
+
+input::-webkit-input-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder,
+input:-moz-placeholder,
+input::placeholder {
+  /* Chrome/Opera/Safari */
+  opacity: .5;
 }
 
 .border {

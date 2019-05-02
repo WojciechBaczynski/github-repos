@@ -23,10 +23,14 @@ class Repositories extends Component {
         }&page=${this.state.currentPage}`
       )
       .then(({ data }) => {
+        let pagesCount =
+          Math.ceil(data.total_count / 30) > 35
+            ? 34
+            : Math.ceil(data.total_count / 30);
         this.setState({
           repositories: data.items,
           fetching: false,
-          pages: Math.ceil(data.total_count / 30)
+          pages: pagesCount
         });
       })
       .catch(error => {
@@ -35,7 +39,7 @@ class Repositories extends Component {
       });
   };
 
-  handleUserNameChange = event => {
+  handleRepositoryNameChange = event => {
     clearTimeout(this.state.timeout);
     this.setState({
       searchedRepo: event.target.value,
@@ -47,10 +51,12 @@ class Repositories extends Component {
   componentDidUpdate(_, prevState) {
     if (prevState.currentPage !== this.state.currentPage) {
       this.fetchingRepositories();
+      window.scrollTo(0, 0);
     }
   }
 
   setCurrentPage = page => this.setState({ currentPage: page });
+
   componentDidMount() {
     this.fetchingRepositories();
   }
@@ -70,7 +76,7 @@ class Repositories extends Component {
             className="h-10 text-lg text-center shadow appearance-none border-1 border border-indigo rounded w-1/2 py-2 px-3 font-normal text-grey-darker leading-tight focus:outline-none focus:shadow-outline z-10"
             placeholder="Search"
             type="text"
-            onChange={this.handleUserNameChange}
+            onChange={this.handleRepositoryNameChange}
           />
         </div>
         <div className={`bg-hero-${this.context}-indigo-low bg-grey-light`}>
@@ -83,10 +89,12 @@ class Repositories extends Component {
               </>
             )}
           </div>
-          <Pagination
-            setCurrentPage={this.setCurrentPage}
-            pages={this.state.pages}
-          />
+          {!this.state.fetching && (
+            <Pagination
+              setCurrentPage={this.setCurrentPage}
+              pages={this.state.pages}
+            />
+          )}
         </div>
       </React.Fragment>
     );
