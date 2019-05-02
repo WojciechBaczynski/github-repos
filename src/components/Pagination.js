@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { ReactComponent as ArrowLeftCircle } from "../assets/icons/arrow-left-circle.svg";
+import { ReactComponent as ArrowRightCircle } from "../assets/icons/arrow-right-circle.svg";
 
 const Pagination = ({ pages, setCurrentPage }) => {
   const [page, changePage] = useState(1);
@@ -23,19 +25,15 @@ const Pagination = ({ pages, setCurrentPage }) => {
 
   return (
     <div className="flex justify-center items-center pb-2">
-      <button
+      <ArrowLeftCircle
+        className="text-indigo h-6 opacity-25 hover:opacity-100"
         onClick={() => pageDecrement(page)}
-        className="appearance-none bg-transparent border-1 border border-indigo rounded-full p-2 font-body text-indigo-dark opacity-25 hover:opacity-100 outline"
-      >
-        &larr;
-      </button>
+      />
       <div className="px-2 text-indigo text-lg font-normal">{`Page ${page} from ${pages}`}</div>
-      <button
+      <ArrowRightCircle
+        className="text-indigo h-6 opacity-25 hover:opacity-100"
         onClick={() => pageIncrement(page, pages)}
-        className="appearance-none bg-transparent border-1 border border-indigo rounded-full p-2 font-body text-indigo-dark opacity-25 hover:opacity-100 outline"
-      >
-        &rarr;
-      </button>
+      />
     </div>
   );
 };
