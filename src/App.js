@@ -23,7 +23,7 @@ class App extends React.Component {
             Github repos
           </span>
           <select
-            className="appearance-none mt-1 bg-white border-1 border border-indigo rounded p-2 font-body text-indigo-dark opacity-25 hover:opacity-100 outline"
+            className="appearance-none mt-1 bg-white border-1 border border-indigo rounded p-2 font-body text-indigo-dark opacity-25 hover:opacity-100 outline cursor-pointer"
             onChange={event => this.setState({ theme: event.target.value })}
           >
             {Object.keys(themes).map((key, index) => (

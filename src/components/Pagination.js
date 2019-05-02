@@ -26,12 +26,12 @@ const Pagination = ({ pages, setCurrentPage }) => {
   return (
     <div className="flex justify-center items-center pb-2">
       <ArrowLeftCircle
-        className="text-indigo h-6 opacity-25 hover:opacity-100"
+        className="cursor-pointer text-indigo h-6 opacity-25 hover:opacity-100"
         onClick={() => pageDecrement(page)}
       />
       <span className="px-2 text-indigo text-lg font-normal">{`${page}/${pages}`}</span>
       <ArrowRightCircle
-        className="text-indigo h-6 opacity-25 hover:opacity-100"
+        className="cursor-pointer text-indigo h-6 opacity-25 hover:opacity-100"
         onClick={() => pageIncrement(page, pages)}
       />
     </div>
