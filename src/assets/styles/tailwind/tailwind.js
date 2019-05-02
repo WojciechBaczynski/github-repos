@@ -62,46 +62,6 @@ const colors = {
   "red-lighter": "#e9f0f7",
   "red-lightest": "#fcebea",
 
-  "orange-darkest": "#462a16",
-  "orange-darker": "#613b1f",
-  "orange-dark": "#de751f",
-  orange: "#f6993f",
-  "orange-light": "#faad63",
-  "orange-lighter": "#fcd9b6",
-  "orange-lightest": "#fff5eb",
-
-  "yellow-darkest": "#453411",
-  "yellow-darker": "#684f1d",
-  "yellow-dark": "#f2d024",
-  yellow: "#ffed4a",
-  "yellow-light": "#fff382",
-  "yellow-lighter": "#fff9c2",
-  "yellow-lightest": "#fcfbeb",
-
-  "green-darkest": "#0f2f21",
-  "green-darker": "#1a4731",
-  "green-dark": "#1f9d55",
-  green: "#38c172",
-  "green-light": "#51d88a",
-  "green-lighter": "#a2f5bf",
-  "green-lightest": "#e3fcec",
-
-  "teal-darkest": "#0d3331",
-  "teal-darker": "#20504f",
-  "teal-dark": "#38a89d",
-  teal: "#4dc0b5",
-  "teal-light": "#64d5ca",
-  "teal-lighter": "#a0f0ed",
-  "teal-lightest": "#e8fffe",
-
-  "blue-darkest": "#12283a",
-  "blue-darker": "#1c3d5a",
-  "blue-dark": "#2779bd",
-  blue: "#3490dc",
-  "blue-light": "#6cb2eb",
-  "blue-lighter": "#bcdefa",
-  "blue-lightest": "#eff8ff",
-
   "indigo-darkest": "#191e38",
   "indigo-darker": "#2f365f",
   "indigo-dark": "#5661b3",
@@ -109,22 +69,6 @@ const colors = {
   "indigo-light": "#7886d7",
   "indigo-lighter": "#b2b7ff",
   "indigo-lightest": "#e6e8ff",
-
-  "purple-darkest": "#21183c",
-  "purple-darker": "#382b5f",
-  "purple-dark": "#794acf",
-  purple: "#9561e2",
-  "purple-light": "#a779e9",
-  "purple-lighter": "#d6bbfc",
-  "purple-lightest": "#f3ebff",
-
-  "pink-darkest": "#451225",
-  "pink-darker": "#6f213f",
-  "pink-dark": "#eb5286",
-  pink: "#f66d9b",
-  "pink-light": "#fa7ea8",
-  "pink-lighter": "#ffbbca",
-  "pink-lightest": "#ffebef",
 
   transparent: "transparent"
 };
@@ -214,9 +158,9 @@ config.backgroundColors = global.Object.assign(bgcolors, colors);
 */
 
 config.screens = {
-  sm: { min: "0px", max: "718px" },
-  md: { min: "719px", max: "991px" },
-  lg: { min: "992px", max: "1999px" }
+  sm: { min: "0px", max: "918px" },
+  md: { min: "919px", max: "1351px" },
+  lg: { min: "1352px", max: "1999px" }
 };
 
 /*
@@ -616,13 +560,22 @@ config.minWidth = {
 config.minHeight = {
   auto: "auto",
   px: "1px",
-  1: "0.25rem",
-  2: "0.5rem",
-  3: "0.75rem",
+  0: "0",
   4: "1rem",
+  6: "1.5rem",
+  8: "2rem",
+  10: "2.5rem",
+  12: "3rem",
+  16: "4rem",
   24: "6rem",
   32: "8rem",
   48: "12rem",
+  64: "16rem",
+  72: "18rem",
+  80: "20rem",
+  88: "22rem",
+  92: "23rem",
+  96: "24rem",
   "2/3": "66.66667%",
   full: "100%",
   screen: "100vh",
@@ -729,6 +682,7 @@ config.margin = {
   2: "0.5rem",
   3: "0.75rem",
   4: "1rem",
+  5: "1.25rem",
   6: "1.5rem",
   8: "2rem"
 };
@@ -756,6 +710,7 @@ config.negativeMargin = {
   2: "0.5rem",
   3: "0.75rem",
   4: "1rem",
+  5: "1.25rem",
   6: "1.5rem",
   8: "2rem",
   9: "3rem"
@@ -931,7 +886,7 @@ config.modules = {
   minHeight: ["responsive"],
   minWidth: ["responsive"],
   negativeMargin: ["responsive"],
-  opacity: ["responsive"],
+  opacity: ["responsive", "hover"],
   overflow: ["responsive"],
   padding: ["responsive"],
   pointerEvents: ["responsive"],
@@ -968,24 +923,58 @@ config.modules = {
 */
 
 config.plugins = [
+  require("tailwindcss-border-gradients")({
+    variants: ["responsive"],
+    directions: {
+      t: "to top",
+      r: "to right",
+      b: "to bottom",
+      l: "to left"
+    },
+    gradients: {
+      "grey-dark": [colors["grey-darker"], colors["grey-darkest"]],
+      grey: [colors["grey-light"], colors["grey"]],
+      "red-dark": [colors["red-darker"], colors["red-darkest"]],
+      red: [colors["red-light"], colors["red-dark"]],
+      "indigo-dark": [colors["indigo-darker"], colors["indigo-darkest"]],
+      indigo: [colors["indigo-light"], colors["indigo-dark"]]
+    }
+  }),
+  require("tailwindcss-gradients")({
+    variants: ["responsive"],
+    directions: {
+      t: "to top",
+      r: "to right",
+      b: "to bottom",
+      l: "to left"
+    },
+    gradients: {
+      "grey-dark": [colors["grey-darker"], colors["grey-darkest"]],
+      grey: [colors["grey-light"], colors["grey"]],
+      "red-dark": [colors["red-darker"], colors["red-darkest"]],
+      red: [colors["red-light"], colors["red-dark"]],
+      "indigo-dark": [colors["indigo-darker"], colors["indigo-darkest"]],
+      indigo: [colors["indigo-light"], colors["indigo-dark"]]
+    }
+  }),
   require("tailwind-heropatterns")({
     variants: [],
-    patterns: ["stripes", "death-star", "fancy-rectangles", "houndstooth"],
+    patterns: [
+      "circuit-board",
+      "death-star",
+      "stripes",
+      "jupiter",
+      "formal-invitation"
+    ],
     colors: {
       black: colors.black,
       grey: colors.grey,
       red: colors.red,
-      orange: colors.orange,
-      yellow: colors.yellow,
-      green: colors.green,
-      teal: colors.teal,
-      blue: colors.blue,
-      indigo: colors.indigo,
-      purple: colors.purple,
-      pink: colors.pink
+      indigo: colors.indigo
     },
     opacity: {
-      default: "0.1",
+      default: "1",
+      mid: "0.15",
       low: "0.03"
     }
   })

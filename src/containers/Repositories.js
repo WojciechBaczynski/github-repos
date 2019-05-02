@@ -42,18 +42,25 @@ class Repositories extends Component {
     return (
       <React.Fragment>
         <div
-          className={`flex h-80 justify-center items-center bg-hero-${
-            this.context
-          }-indigo mb-8`}
+          className={`flex h-80 justify-center items-center bg-gradient-r-indigo  overflow-hidden relative shadow-inner border-solid border-grey-light border-t-0 border-r-0 border-l-0 border-b-5 `}
         >
+          <div
+            className={`h-full w-full absolute bg-hero-${
+              this.context
+            }-grey-mid`}
+          />
           <input
-            className="h-10 text-lg text-center shadow appearance-none border-1 border border-indigo rounded w-1/2 py-2 px-3 font-body text-grey-darker leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Search repository"
+            className="h-10 text-lg text-center shadow appearance-none border-1 border border-indigo rounded w-1/2 py-2 px-3 font-normal text-grey-darker leading-tight focus:outline-none focus:shadow-outline z-10"
+            placeholder="Search"
             type="text"
             onChange={this.handleUserNameChange}
           />
         </div>
-        <div className="flex flex-wrap justify-center items-center">
+        <div
+          className={`relative h-full min-h-96 flex flex-wrap justify-center items-center bg-hero-${
+            this.context
+          }-indigo-low pt-8 bg-grey-light`}
+        >
           {this.state.fetching ? (
             <Spinner />
           ) : (

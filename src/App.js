@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      theme: themes.stripes
+      theme: themes.circuitBoard
     };
   }
 
@@ -17,16 +17,20 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <div
-          className={`bg-hero-${this.state.theme}-indigo flex justify-center`}
+          className={`bg-white h-12 flex justify-between items-center p-4 px-8 shadow-sm`}
         >
+          <div className="font-body text-2xl text-indigo-dark">
+            Github repos
+          </div>
           <select
-            className="appearance-none mt-1 bg-white border-1 border border-indigo rounded p-1 font-body text-grey-darker"
+            className="appearance-none mt-1 bg-white border-1 border border-indigo rounded p-2 font-body text-indigo-dark opacity-25 hover:opacity-100 outline"
             onChange={event => this.setState({ theme: event.target.value })}
           >
-            <option value={themes.stripes}>Theme 1</option>
-            <option value={themes.deathStar}>Theme 2</option>
-            <option value={themes.fancyRectangles}>Theme 3</option>
-            <option value={themes.houndstooth}>Theme 4</option>
+            {Object.keys(themes).map((key, index) => (
+              <option key={`theme-${index}`} value={themes[key]}>
+                Theme {index + 1}
+              </option>
+            ))}
           </select>
         </div>
 
