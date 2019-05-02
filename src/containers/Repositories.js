@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DisplayRepositories from "../components/DisplayRepositories";
+import Pagination from "../components/Pagination";
 import Spinner from "../components/Spinner";
 import { ThemeContext } from "../context";
 
 class Repositories extends Component {
   state = {
-    searchedRepo: "jest",
+    searchedRepo: "react",
+    pages: null,
+    currentPage: 1,
     repositories: [],
     timeout: null,
     fetching: true
@@ -17,13 +20,17 @@ class Repositories extends Component {
       .get(
         `https://api.github.com/search/repositories?q=${
           this.state.searchedRepo
-        }`
+        }&page=${this.state.currentPage}`
       )
-      .then(({ data }) =>
-        this.setState({ repositories: data.items, fetching: false })
-      )
+      .then(({ data }) => {
+        this.setState({
+          repositories: data.items,
+          fetching: false,
+          pages: Math.ceil(data.total_count / 30)
+        });
+      })
       .catch(error => {
-        alert("Failed to fetched!");
+        alert("Failed to fetch!");
         console.log(error);
       });
   };
@@ -37,6 +44,13 @@ class Repositories extends Component {
     });
   };
 
+  componentDidUpdate(_, prevState) {
+    if (prevState.currentPage !== this.state.currentPage) {
+      this.fetchingRepositories();
+    }
+  }
+
+  setCurrentPage = page => this.setState({ currentPage: page });
   componentDidMount() {
     this.fetchingRepositories();
   }
@@ -59,16 +73,20 @@ class Repositories extends Component {
             onChange={this.handleUserNameChange}
           />
         </div>
-        <div
-          className={`relative h-full min-h-96 flex flex-wrap justify-center items-center bg-hero-${
-            this.context
-          }-indigo-low pt-8 bg-grey-light`}
-        >
-          {this.state.fetching ? (
-            <Spinner />
-          ) : (
-            <DisplayRepositories repositories={this.state.repositories} />
-          )}
+        <div className={`bg-hero-${this.context}-indigo-low bg-grey-light`}>
+          <div className="relative h-full min-h-96 flex flex-wrap justify-center items-center pt-8 ">
+            {this.state.fetching ? (
+              <Spinner />
+            ) : (
+              <>
+                <DisplayRepositories repositories={this.state.repositories} />
+              </>
+            )}
+          </div>
+          <Pagination
+            setCurrentPage={this.setCurrentPage}
+            pages={this.state.pages}
+          />
         </div>
       </React.Fragment>
     );
