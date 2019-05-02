@@ -29,7 +29,7 @@ const Pagination = ({ pages, setCurrentPage }) => {
         className="text-indigo h-6 opacity-25 hover:opacity-100"
         onClick={() => pageDecrement(page)}
       />
-      <div className="px-2 text-indigo text-lg font-normal">{`${page}/${pages}`}</div>
+      <span className="px-2 text-indigo text-lg font-normal">{`${page}/${pages}`}</span>
       <ArrowRightCircle
         className="text-indigo h-6 opacity-25 hover:opacity-100"
         onClick={() => pageIncrement(page, pages)}

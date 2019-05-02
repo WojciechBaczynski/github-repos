@@ -89,7 +89,7 @@ class Repositories extends Component {
               </>
             )}
           </div>
-          {!this.state.fetching && (
+          {this.state.pages && (
             <Pagination
               setCurrentPage={this.setCurrentPage}
               pages={this.state.pages}

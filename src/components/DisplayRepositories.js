@@ -14,29 +14,29 @@ const displayRepositories = ({ repositories }) => {
             src={repository.owner.avatar_url}
             alt="morda"
           />
-          <div className="bg-white h-8 max-w-32 py-1 pt-2 px-4 mb-0 rounded shadow-sm absolute ml-2 pl-8 z-10 inline-flex text-indigo font-normal items-center">
+          <span className="bg-white h-8 max-w-32 py-1 pt-2 px-4 mb-0 rounded shadow-sm absolute ml-2 pl-8 z-10 inline-flex text-indigo font-normal items-center">
             {repository.owner.login}
-          </div>
+          </span>
         </div>
         <div className="border-gradient-t-indigo border-solid border-t-0 border-b-0 border-r-8 border-l-0 text-center justify-around flex flex-col  min-h-2/3 overflow-hidden font-normal bg-white shadow-md sm:pt-8 sm:w-full w-9/10 px-4 pt-8 h-2/3 rounded">
           <div className="ml-8 mr-6 sm:pt-2">
-            <div className="font-body mb-2 mt-4 sm:mt-0 text-left text-3xl text-indigo-darker truncate">
+            <span className="font-body mb-2 mt-4 sm:mt-0 text-left text-3xl text-indigo-darker truncate">
               {repository.name}
-            </div>
+            </span>
             <div className="text-left mt-4 p-2 px-4 pb-4 border border-indigo-lightest rounded h-16 sm:max-h-32 sm:h-auto mb-4 pb-2 overflow-auto">
-              <div className="font-normal text-indigo-lighter leading-normal -mt-5 -ml-5 absolute bg-white ">
+              <span className="font-normal text-indigo-lighter leading-normal -mt-5 -ml-5 absolute bg-white ">
                 Description
-              </div>
-              <div className="font-normal leading-normal mt-2 sm:max-w-32">
+              </span>
+              <span className="font-normal leading-normal mt-2 sm:max-w-32">
                 {repository.description}
-              </div>
+              </span>
             </div>
             <div className="text-left mb-6 flex flex-col">
               <div className="flex flex-col justify-center items-center w-10 opacity-75">
                 <Star className="fill-current text-indigo-lighter pb-1 h-6" />
-                <div className="font-normal text-indigo-darker">
+                <span className="font-normal text-indigo-darker">
                   {repository.stargazers_count}
-                </div>
+                </span>
               </div>
             </div>
           </div>
@@ -44,9 +44,9 @@ const displayRepositories = ({ repositories }) => {
       </div>
     ))
   ) : (
-    <div className="font-body text-2xl text-indigo-dark">
+    <span className="font-body text-2xl text-indigo-dark">
       Repository does not exist
-    </div>
+    </span>
   );
 };
 

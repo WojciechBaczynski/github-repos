@@ -19,9 +19,9 @@ class App extends React.Component {
         <div
           className={`bg-white h-12 flex justify-between items-center p-4 px-8 shadow-sm`}
         >
-          <div className="font-body text-2xl text-indigo-dark">
+          <span className="font-body text-2xl text-indigo-dark">
             Github repos
-          </div>
+          </span>
           <select
             className="appearance-none mt-1 bg-white border-1 border border-indigo rounded p-2 font-body text-indigo-dark opacity-25 hover:opacity-100 outline"
             onChange={event => this.setState({ theme: event.target.value })}
