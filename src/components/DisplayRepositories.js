@@ -20,9 +20,9 @@ const displayRepositories = ({ repositories }) => {
         </div>
         <div className="border-gradient-t-indigo border-solid border-t-0 border-b-0 border-r-8 border-l-0 text-center justify-around flex flex-col  min-h-2/3 overflow-hidden font-normal bg-white shadow-md sm:pt-8 sm:w-full w-9/10 px-4 pt-8 h-2/3 rounded">
           <div className="ml-8 mr-6 sm:pt-2">
-            <span className="font-body mb-2 mt-4 sm:mt-0 text-left text-3xl text-indigo-darker truncate">
+            <div className="font-body mb-2 mt-4 sm:mt-0 text-left text-3xl text-indigo-darker truncate">
               {repository.name}
-            </span>
+            </div>
             <div className="text-left mt-4 p-2 px-4 pb-4 border border-indigo-lightest rounded h-16 sm:max-h-32 sm:h-auto mb-4 pb-2 overflow-auto">
               <span className="font-normal text-indigo-lighter leading-normal -mt-5 -ml-5 absolute bg-white ">
                 Description
