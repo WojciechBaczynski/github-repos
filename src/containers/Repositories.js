@@ -22,7 +22,10 @@ class Repositories extends Component {
       .then(({ data }) =>
         this.setState({ repositories: data.items, fetching: false })
       )
-      .catch(error => console.log(error));
+      .catch(error => {
+        alert("Failed to fetched!");
+        console.log(error);
+      });
   };
 
   handleUserNameChange = event => {

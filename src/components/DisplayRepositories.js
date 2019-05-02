@@ -44,7 +44,9 @@ const displayRepositories = ({ repositories }) => {
       </div>
     ))
   ) : (
-    <div>No repo</div>
+    <div className="font-body text-2xl text-indigo-dark">
+      Repository does not exist
+    </div>
   );
 };
 
