@@ -81,20 +81,20 @@ class Repositories extends Component {
         </div>
         <div className={`bg-hero-${this.context}-indigo-low bg-grey-light`}>
           <div className="relative h-full min-h-96 flex flex-wrap justify-center items-center pt-8 ">
-            {this.state.fetching ? (
-              <Spinner />
-            ) : (
-              <>
+            <div className="relative w-full h-full min-h-96 flex flex-wrap justify-center items-center">
+              {this.state.fetching ? (
+                <Spinner />
+              ) : (
                 <DisplayRepositories repositories={this.state.repositories} />
-              </>
+              )}
+            </div>
+            {this.state.pages && (
+              <Pagination
+                setCurrentPage={this.setCurrentPage}
+                pages={this.state.pages}
+              />
             )}
           </div>
-          {this.state.pages && (
-            <Pagination
-              setCurrentPage={this.setCurrentPage}
-              pages={this.state.pages}
-            />
-          )}
         </div>
       </React.Fragment>
     );

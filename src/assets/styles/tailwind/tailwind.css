@@ -87,13 +87,8 @@ html {
   }
 }
 
-input::-webkit-input-placeholder,
-input::-moz-placeholder,
-input:-ms-input-placeholder,
-input:-moz-placeholder,
-input::placeholder {
-  /* Chrome/Opera/Safari */
-  opacity: 0.5;
+[class*='t-'] {
+  transition: all .28s ease-in-out;
 }
 
 .border {

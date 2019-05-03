@@ -605,6 +605,7 @@ config.maxWidth = {
   xl: "60rem",
   24: "6rem",
   32: "8rem",
+  52: "14rem",
   "2xl": "70rem",
   "3xl": "80rem",
   "4xl": "90rem",
