@@ -1,6 +1,6 @@
 import React from "react";
 
-const spinner = () => {
+const Spinner = () => {
   return (
     <div className="lds-roller">
       <div />
@@ -15,4 +15,4 @@ const spinner = () => {
   );
 };
 
-export default spinner;
+export default Spinner;

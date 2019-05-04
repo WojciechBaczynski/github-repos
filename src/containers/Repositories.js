@@ -7,7 +7,7 @@ import { ThemeContext } from "../context";
 
 class Repositories extends Component {
   state = {
-    searchedRepo: "react",
+    searchedRepo: "",
     pages: null,
     currentPage: 1,
     repositories: [],
@@ -15,28 +15,37 @@ class Repositories extends Component {
     fetching: true
   };
 
-  fetchingRepositories = () => {
-    axios
-      .get(
-        `https://api.github.com/search/repositories?q=${
-          this.state.searchedRepo
-        }&page=${this.state.currentPage}`
-      )
-      .then(({ data }) => {
-        let pagesCount =
-          Math.ceil(data.total_count / 30) > 35
-            ? 34
-            : Math.ceil(data.total_count / 30);
-        this.setState({
-          repositories: data.items,
-          fetching: false,
-          pages: pagesCount
+  fetchRepositories = () => {
+    this.state.searchedRepo &&
+      axios
+        .get(
+          `https://api.github.com/search/repositories?q=${
+            this.state.searchedRepo
+          }&page=${this.state.currentPage}`
+        )
+        .then(({ data }) => {
+          let pagesCount =
+            Math.ceil(data.total_count / 30) > 35
+              ? 34
+              : Math.ceil(data.total_count / 30);
+          this.setState({
+            repositories: data.items,
+            fetching: false,
+            pages: pagesCount === 0 ? null : pagesCount
+          });
+        })
+        .catch(error => {
+          alert("Failed to fetch!");
+          console.log(error);
         });
-      })
-      .catch(error => {
-        alert("Failed to fetch!");
-        console.log(error);
+
+    if (!this.state.searchedRepo) {
+      this.setState({
+        fetching: false,
+        repositories: [],
+        pages: null
       });
+    }
   };
 
   handleRepositoryNameChange = event => {
@@ -44,13 +53,13 @@ class Repositories extends Component {
     this.setState({
       searchedRepo: event.target.value,
       fetching: true,
-      timeout: setTimeout(this.fetchingRepositories, 1000)
+      timeout: setTimeout(this.fetchRepositories, 1000)
     });
   };
 
   componentDidUpdate(_, prevState) {
     if (prevState.currentPage !== this.state.currentPage) {
-      this.fetchingRepositories();
+      this.fetchRepositories();
       window.scrollTo(0, 0);
     }
   }
@@ -58,7 +67,7 @@ class Repositories extends Component {
   setCurrentPage = page => this.setState({ currentPage: page });
 
   componentDidMount() {
-    this.fetchingRepositories();
+    this.fetchRepositories();
   }
 
   render() {
@@ -85,7 +94,10 @@ class Repositories extends Component {
               {this.state.fetching ? (
                 <Spinner />
               ) : (
-                <DisplayRepositories repositories={this.state.repositories} />
+                <DisplayRepositories
+                  allRepositories={this.state.repositories}
+                  isSearchActive={this.state.searchedRepo}
+                />
               )}
             </div>
             {this.state.pages && (
