@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Star } from "../assets/icons/star.svg";
-import { ReactComponent as Save } from "../assets/icons/save.svg";
+import { ReactComponent as Save } from "../assets/icons/folder-plus.svg";
+import { ReactComponent as Forget } from "../assets/icons/folder-minus.svg";
 
 const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
   const [savedRepositories, setSavedRepositories] = useState([]);
   const [repositories, setRepositories] = useState([]);
+  const savedReposIds = savedRepositories.map(repo => repo.id);
 
   useEffect(() => {
     const localStorageRepos = JSON.parse(localStorage.getItem("repos"));
@@ -14,13 +16,6 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
     setRepositories(allRepositories);
   }, [allRepositories]);
 
-  const clickRepo = e => {
-    const repos = savedRepositories;
-    repos.push(repositories[e.target.value]);
-    localStorage.setItem("repos", JSON.stringify(repos));
-    setSavedRepositories(repos);
-  };
-
   const prioRepositories =
     (Array.isArray(repositories) &&
       repositories.length !== 0 &&
@@ -28,11 +23,25 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
     (!isSearchActive && savedRepositories) ||
     [];
 
+  const saveRepo = repo => {
+    const repos = [...savedRepositories];
+    repos.push(repo);
+    localStorage.setItem("repos", JSON.stringify(repos));
+    setSavedRepositories(repos);
+  };
+
+  const forgetRepo = repoId => {
+    const repos = [...savedRepositories];
+    const newRepos = repos.filter(repo => repo.id !== repoId);
+    localStorage.setItem("repos", JSON.stringify(newRepos));
+    setSavedRepositories(newRepos);
+  };
+
   return (
     <>
-      {prioRepositories.map((repository, index) => (
+      {prioRepositories.map(repository => (
         <div
-          key={index}
+          key={repository.id}
           className="w-1/4 md:w-1/3 sm:w-full sm:mx-8 p-4 m-4 max-w-sm rounded bg-transparent h-88 sm:h-auto justify-center flex items-center flex-col sm:max-w-52"
         >
           <div className="h-8 sm:h-1/3 z-30 w-full flex relative -mr-2 sm:-mr-4">
@@ -71,13 +80,23 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
                   </span>
                 </div>
                 <div className="flex flex-col justify-center items-center w-10 opacity-75">
-                  <Save className="text-indigo-lighter pb-1 h-6" />
+                  {savedReposIds.includes(repository.id) ? (
+                    <Forget className="text-indigo-lighter pb-1 h-6" />
+                  ) : (
+                    <Save className="text-indigo-lighter pb-1 h-6" />
+                  )}
                   <button
-                    value={index}
-                    onClick={e => clickRepo(e)}
+                    onClick={() => {
+                      let flag = savedReposIds.includes(repository.id);
+                      if (flag) {
+                        forgetRepo(repository.id);
+                      } else {
+                        saveRepo(repository);
+                      }
+                    }}
                     className="text-indigo-darker font-normal appearance-none cursor-pointer hover:border-4 border hover:border-indigo  border-transparent rounded focus:outline-none focus:shadow-outline"
                   >
-                    Save
+                    {savedReposIds.includes(repository.id) ? "Forget" : "Save"}
                   </button>
                 </div>
               </div>
