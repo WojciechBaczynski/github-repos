@@ -82,6 +82,7 @@ class Repositories extends Component {
             }-grey-mid`}
           />
           <input
+            autoFocus
             className="h-10 text-lg text-center shadow appearance-none border-1 border border-indigo rounded w-1/2 py-2 px-3 font-normal text-grey-darker leading-tight focus:outline-none focus:shadow-outline z-10"
             placeholder="Search"
             type="text"
