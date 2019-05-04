@@ -94,7 +94,7 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
                         saveRepo(repository);
                       }
                     }}
-                    className="text-indigo-darker font-normal appearance-none cursor-pointer hover:border-4 border hover:border-indigo  border-transparent rounded focus:outline-none focus:shadow-outline"
+                    className="bg-transparent text-indigo-darker font-normal appearance-none cursor-pointer hover:border-4 border hover:border-indigo  border-transparent rounded focus:outline-none focus:shadow-outline"
                   >
                     {savedReposIds.includes(repository.id) ? "Forget" : "Save"}
                   </button>
