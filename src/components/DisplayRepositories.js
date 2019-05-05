@@ -6,40 +6,42 @@ import { ReactComponent as Forget } from "../assets/icons/folder-minus.svg";
 const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
   const [savedRepositories, setSavedRepositories] = useState([]);
   const [repositories, setRepositories] = useState([]);
-  const savedReposIds = savedRepositories.map(repo => repo.id);
+  const savedRepositoriesIds = savedRepositories.map(
+    savedRepository => savedRepository.id
+  );
 
   useEffect(() => {
-    const localStorageRepos = JSON.parse(localStorage.getItem("repos"));
-    if (localStorageRepos) {
-      setSavedRepositories(localStorageRepos);
+    const localStorageRepositories = JSON.parse(localStorage.getItem("repos"));
+    if (localStorageRepositories) {
+      setSavedRepositories(localStorageRepositories);
     }
     setRepositories(allRepositories);
   }, [allRepositories]);
 
-  const prioRepositories =
+  const priorRepositories =
     (Array.isArray(repositories) &&
       repositories.length !== 0 &&
       repositories) ||
     (!isSearchActive && savedRepositories) ||
     [];
 
-  const saveRepo = repo => {
+  const saveRepository = repository => {
     const repos = [...savedRepositories];
-    repos.push(repo);
+    repos.push(repository);
     localStorage.setItem("repos", JSON.stringify(repos));
     setSavedRepositories(repos);
   };
 
-  const forgetRepo = repoId => {
+  const forgetRepository = repositoryId => {
     const repos = [...savedRepositories];
-    const newRepos = repos.filter(repo => repo.id !== repoId);
-    localStorage.setItem("repos", JSON.stringify(newRepos));
-    setSavedRepositories(newRepos);
+    const filteredRepositories = repos.filter(repo => repo.id !== repositoryId);
+    localStorage.setItem("repos", JSON.stringify(filteredRepositories));
+    setSavedRepositories(filteredRepositories);
   };
 
   return (
     <>
-      {prioRepositories.map(repository => (
+      {priorRepositories.map(repository => (
         <div
           key={repository.id}
           className="w-1/4 md:w-1/3 sm:w-full sm:mx-8 p-4 m-4 max-w-sm rounded bg-transparent h-88 sm:h-auto justify-center flex items-center flex-col sm:max-w-52"
@@ -49,7 +51,7 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
               <img
                 className="min-w-24 min-h-24 max-h-24 max-w-24 rounded-full w-24 bg-white -m-8 shadow-sm relative z-20"
                 src={repository.owner.avatar_url}
-                alt="morda"
+                alt="avatar"
               />
               <span className="bg-white sm:max-w-32 sm:overflow-hidden h-8 py-1 pt-2 px-4 mb-0 rounded shadow-sm absolute ml-2 pl-8 z-10 inline-flex text-indigo font-normal items-center">
                 {repository.owner.login}
@@ -80,23 +82,25 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
                   </span>
                 </div>
                 <div className="flex flex-col justify-center items-center w-10 opacity-75">
-                  {savedReposIds.includes(repository.id) ? (
+                  {savedRepositoriesIds.includes(repository.id) ? (
                     <Forget className="text-indigo-lighter pb-1 h-6" />
                   ) : (
                     <Save className="text-indigo-lighter pb-1 h-6" />
                   )}
                   <button
                     onClick={() => {
-                      let flag = savedReposIds.includes(repository.id);
+                      let flag = savedRepositoriesIds.includes(repository.id);
                       if (flag) {
-                        forgetRepo(repository.id);
+                        forgetRepository(repository.id);
                       } else {
-                        saveRepo(repository);
+                        saveRepository(repository);
                       }
                     }}
                     className="bg-transparent text-indigo-darker font-normal appearance-none cursor-pointer hover:border-4 border hover:border-indigo  border-transparent rounded focus:outline-none focus:shadow-outline"
                   >
-                    {savedReposIds.includes(repository.id) ? "Forget" : "Save"}
+                    {savedRepositoriesIds.includes(repository.id)
+                      ? "Forget"
+                      : "Save"}
                   </button>
                 </div>
               </div>
