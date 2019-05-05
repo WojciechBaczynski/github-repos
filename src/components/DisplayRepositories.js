@@ -5,7 +5,7 @@ import { ReactComponent as Forget } from "../assets/icons/folder-minus.svg";
 
 const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
   const [savedRepositories, setSavedRepositories] = useState([]);
-  const [repositories, setRepositories] = useState([]);
+  const [fetchedRepositories, setFetchedRepositories] = useState([]);
   const savedRepositoriesIds = savedRepositories.map(
     savedRepository => savedRepository.id
   );
@@ -15,13 +15,13 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
     if (localStorageRepositories) {
       setSavedRepositories(localStorageRepositories);
     }
-    setRepositories(allRepositories);
+    setFetchedRepositories(allRepositories);
   }, [allRepositories]);
 
-  const priorRepositories =
-    (Array.isArray(repositories) &&
-      repositories.length !== 0 &&
-      repositories) ||
+  const Repositories =
+    (Array.isArray(fetchedRepositories) &&
+      fetchedRepositories.length !== 0 &&
+      fetchedRepositories) ||
     (!isSearchActive && savedRepositories) ||
     [];
 
@@ -41,10 +41,10 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
 
   return (
     <>
-      {priorRepositories.map(repository => (
+      {Repositories.map(repository => (
         <div
           key={repository.id}
-          className="w-1/4 md:w-1/3 sm:w-full sm:mx-8 p-4 m-4 max-w-sm rounded bg-transparent h-88 sm:h-auto justify-center flex items-center flex-col sm:max-w-52"
+          className="w-1/4 md:w-1/3 sm:w-full sm:mx-8 p-4 m-4 max-w-sm rounded bg-transparent h-88 sm:h-auto justify-center flex items-center flex-col sm:max-w-52 hover:-mt-1"
         >
           <div className="h-8 sm:h-1/3 z-30 w-full flex relative -mr-2 sm:-mr-4">
             <div className="self-start">
@@ -53,8 +53,15 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
                 src={repository.owner.avatar_url}
                 alt="avatar"
               />
-              <span className="bg-white sm:max-w-32 sm:overflow-hidden h-8 py-1 pt-2 px-4 mb-0 rounded shadow-sm absolute ml-2 pl-8 z-10 inline-flex text-indigo font-normal items-center">
-                {repository.owner.login}
+              <span className="bg-white sm:max-w-32 sm:overflow-hidden h-8 py-1 pt-2 px-4 mb-0 rounded shadow-sm absolute ml-2 pl-8 z-10 inline-flex font-normal items-center">
+                <a
+                  href={repository.owner.html_url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="no-underline text-indigo cursor-pointer"
+                >
+                  {repository.owner.login}
+                </a>
               </span>
             </div>
           </div>
@@ -64,7 +71,14 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
                 title={repository.name}
                 className="font-body mb-2 mt-4 sm:mt-0 text-left text-3xl text-indigo-darker truncate"
               >
-                {repository.name}
+                <a
+                  href={repository.html_url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="no-underline text-indigo-darker cursor-pointer"
+                >
+                  {repository.name}
+                </a>
               </div>
               <div className="text-left mt-4 p-2 px-4 pb-4 border border-indigo-lightest rounded h-16 sm:max-h-32 sm:h-auto mb-4 pb-2 overflow-auto">
                 <span className="font-normal text-indigo-lighter leading-normal -mt-5 -ml-5 absolute bg-white ">
@@ -109,9 +123,9 @@ const DisplayRepositories = ({ isSearchActive, allRepositories }) => {
         </div>
       ))}
       {isSearchActive &&
-        repositories &&
-        Array.isArray(repositories) &&
-        repositories.length === 0 && (
+        fetchedRepositories &&
+        Array.isArray(fetchedRepositories) &&
+        fetchedRepositories.length === 0 && (
           <span className="font-body text-2xl text-indigo-dark">
             No repositories found
           </span>

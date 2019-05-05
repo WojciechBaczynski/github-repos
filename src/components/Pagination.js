@@ -24,7 +24,7 @@ const Pagination = ({ pages, setCurrentPage }) => {
   };
 
   return (
-    <div className="flex justify-center items-center pb-2">
+    <div className="flex justify-center items-center pb-4">
       <ArrowLeftCircle
         className="cursor-pointer text-indigo h-6 opacity-25 hover:opacity-100"
         onClick={() => pageDecrement(page)}

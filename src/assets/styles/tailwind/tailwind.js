@@ -886,7 +886,7 @@ config.modules = {
   maxWidth: ["responsive"],
   minHeight: ["responsive"],
   minWidth: ["responsive"],
-  negativeMargin: ["responsive"],
+  negativeMargin: ["responsive", "hover"],
   opacity: ["responsive", "hover"],
   overflow: ["responsive"],
   padding: ["responsive"],
