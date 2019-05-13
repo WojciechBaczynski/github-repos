@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/github-repos/static/css/main.6fdfdfd2.chunk.css",
+    "main.js": "/github-repos/static/js/main.70228327.chunk.js",
+    "main.js.map": "/github-repos/static/js/main.70228327.chunk.js.map",
+    "runtime~main.js": "/github-repos/static/js/runtime~main.5be2ab4f.js",
+    "runtime~main.js.map": "/github-repos/static/js/runtime~main.5be2ab4f.js.map",
+    "static/js/2.78eacecc.chunk.js": "/github-repos/static/js/2.78eacecc.chunk.js",
+    "static/js/2.78eacecc.chunk.js.map": "/github-repos/static/js/2.78eacecc.chunk.js.map",
+    "index.html": "/github-repos/index.html",
+    "precache-manifest.4b2f5ebee00421e197e39624f7b23f2a.js": "/github-repos/precache-manifest.4b2f5ebee00421e197e39624f7b23f2a.js",
+    "service-worker.js": "/github-repos/service-worker.js",
+    "static/css/main.6fdfdfd2.chunk.css.map": "/github-repos/static/css/main.6fdfdfd2.chunk.css.map",
+    "static/media/Jost.css": "/github-repos/static/media/Jost-900.12e7a76f.ttf",
+    "static/media/arrow-left-circle.d14a0484.svg": "/github-repos/static/media/arrow-left-circle.d14a0484.svg",
+    "static/media/arrow-right-circle.bdbb0ef6.svg": "/github-repos/static/media/arrow-right-circle.bdbb0ef6.svg",
+    "static/media/folder-minus.35c45380.svg": "/github-repos/static/media/folder-minus.35c45380.svg",
+    "static/media/folder-plus.819e77a4.svg": "/github-repos/static/media/folder-plus.819e77a4.svg",
+    "static/media/index.css": "/github-repos/static/media/leaguespartan-bold.de124ab4.woff",
+    "static/media/star.ac8ea213.svg": "/github-repos/static/media/star.ac8ea213.svg"
+  }
+}
